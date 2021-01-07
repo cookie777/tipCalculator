@@ -10,8 +10,8 @@ import UIKit
 class MainScrollView: UIScrollView {
 
     var totalAmountView = TotalAmountStackView()
-    var billAmountView = UserInputStackView(titleText: "Your Bill Amount", unitText: "$")
-    var tipPercentageView = UserInputStackView(titleText: "Tip Percentage", unitText: "%")
+    var billAmountView = UserInputStackView(titleText: "Your Bill Amount", unitText: "$", defaultValue: "0")
+    var tipPercentageView = UserInputStackView(titleText: "Tip Percentage", unitText: "%", defaultValue: "0")
     var tipPercentageSlider = TipPercentageSlider()
     var calculateButton = CalculateButton(text: "Calculate Tip")
 
@@ -27,16 +27,18 @@ class MainScrollView: UIScrollView {
 
     init() {
         super.init(frame: .zero)
-        
 
         self.addSubview(mainStackView)
-//        mainStackView.matchParent()
-//        mainStackView.anchors(
-//            topAnchor: self.contentLayoutGuide.topAnchor,
-//            leadingAnchor: self.contentLayoutGuide.leadingAnchor,
-//            trailingAnchor: self.contentLayoutGuide.trailingAnchor,
-//            bottomAnchor: self.contentLayoutGuide.bottomAnchor
-//        )
+        mainStackView.matchSize(widthConstant: 64, heightConstant: 64)
+  
+        contentLayoutGuide.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1).isActive = true
+        contentLayoutGuide.heightAnchor.constraint(equalTo: mainStackView.heightAnchor, multiplier: 1.2).isActive  = true
+        
+        mainStackView.centerXAnchor.constraint(equalTo: contentLayoutGuide.centerXAnchor).isActive = true
+        mainStackView.topAnchor.constraint(equalTo:contentLayoutGuide.topAnchor, constant: 64).isActive = true
+        
+        
+
     }
     
     required init?(coder: NSCoder) {

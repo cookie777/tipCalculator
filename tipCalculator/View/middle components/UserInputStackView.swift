@@ -16,11 +16,12 @@ class UserInputStackView: VerticalStackView {
     lazy var unitTextFieldGroup = HorizontalStackView(arrangedSubviews: [unitLabel, textField], spacing: 8, alignment: .center)
     
     
-    init(titleText: String, unitText: String) {
+    init(titleText: String, unitText: String, defaultValue: String = "") {
         super.init(arrangedSubviews: [], spacing: 16)
         titleLabel.text = titleText
         unitLabel.text = unitText
         unitLabel.constraintWidth(equalToConstant: 16)
+        textField.text = defaultValue
         self.addArrangedSubview(titleLabel)
         self.addArrangedSubview(unitTextFieldGroup)
         

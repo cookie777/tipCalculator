@@ -119,7 +119,17 @@ extension UIView {
             self.heightAnchor.constraint(equalTo: superHeightAnchor).isActive = true
         }
     }
-    
+    // add by Yanmer , caring with ratio, constant
+    func matchSize(widthRatio: CGFloat = 1,  heightRatio:CGFloat = 1, widthConstant:CGFloat = 0, heightConstant: CGFloat = 0) {
+        if let superWidthAnchor = superview?.widthAnchor {
+            self.widthAnchor.constraint(equalTo: superWidthAnchor, multiplier: widthRatio, constant: -widthConstant*2).isActive = true
+        }
+        if let superHeightAnchor = superview?.heightAnchor {
+            self.heightAnchor.constraint(equalTo: superHeightAnchor, multiplier: heightRatio, constant: -heightConstant*2).isActive = true
+        }
+    }
+
+
     func centerXYin(_ view: UIView) {
         translatesAutoresizingMaskIntoConstraints = false
         self.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
